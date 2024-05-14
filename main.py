@@ -21,38 +21,46 @@ def retry_action(action, max_retries=3):
             else:
                 raise e
 
-# c = webdriver.ChromeOptions()
-# c.add_argument("--incognito")
-# run = webdriver.Chrome(executable_path="D:\\Github Repositories\\residence-permit-appointment\\chrome driver\\chromedriver-win64\\chromedriver.exe", options=c)
-# run.get('https://otv.verwalt-berlin.de/ams/TerminBuchen?lang=en&termin=1&dienstleister=327437&anliegen[]=324661&herkunft=1')
+def final_button():
+    driver.find_element(By.ID, 'applicationForm:managedForm:proceed').click()
 
-# Specify the path to the ChromeDriver executable
+#vars
+country = input('Please enter your nationality! First letter must be capital and the rest should be small!: ')
+
+number_of_people = int(input('Please enter the number of people applying! 1,2,3....: '))
+people_in_german = ['eine Person','zwei Personen', 'drei Personen', 'vier Personen', 'fünf Personen', 'sechs Personen', 'sieben Personen', 'acht Personen']
+number_of_people_in_german = people_in_german[number_of_people-1]
+
+family_members = input('Do you live with any family members? Please type y/n! No input or inappropriate input will be considered as No!: ')
+if family_members == 'y' or 'Y' or 'Yes' or 'yes':
+    family_members_in_german = 'ja'
+else:
+    family_members_in_german = 'nein'
+
+
+#chrome driver
 chrome_driver_path = "D:\\Github Repositories\\residence-permit-appointment\\chrome driver\\chromedriver-win64\\chromedriver.exe"
 
+#disable the chrome detection
 options = Options()
 options.add_argument("--disable-blink-features=AutomationControlled")
 
-# Create a Service object
+#start the selenium service
 service = Service(chrome_driver_path)
-
-# Start the WebDriver service
 service.start()
 
-# Create a WebDriver instance with the service
+#appointment booking website
 driver = webdriver.Chrome(service=service, options=options)
-
-# URL of the website you want to visit
 website_url = "https://otv.verwalt-berlin.de/ams/TerminBuchen"
-
-# Open the website
 driver.get(website_url)
 
-# Find all elements with class name 'button'
+
+#automation
 buttons = WebDriverWait(driver, 10).until(
     EC.presence_of_all_elements_located((By.CLASS_NAME, "button"))
 )
 
-# Iterate over the buttons
+
 for button in buttons:
     try:
         # Check if the button's text is 'Termin buchen'
@@ -65,17 +73,10 @@ for button in buttons:
             EC.presence_of_all_elements_located((By.CLASS_NAME, "button"))
         )
         continue
-
 time.sleep(3)
 
-# Now you can interact with the website
-# l = driver.find_elements(By.CLASS_NAME, 'button')
-# #time.sleep(5)
-# for i in l:
-#     if i.text == 'Termin buchen':
-#         i.click()
 
-# Locate the checkbox element by its ID (replace 'checkbox_id' with the actual ID of the checkbox)
+
 checkbox = driver.find_element(By.CLASS_NAME, "XCheckbox")
 # Check the checkbox if it's not already checked
 if not checkbox.is_selected():
@@ -87,17 +88,17 @@ time.sleep(12)
 
 country_select = driver.find_element(By.NAME, 'sel_staat')
 country_options = Select(country_select)
-country_options.select_by_visible_text("Pakistan")
+country_options.select_by_visible_text(country)
 time.sleep(2)
 
 number_of_people_select = driver.find_element(By.NAME, 'personenAnzahl_normal')
 number_of_people_options = Select(number_of_people_select)
-number_of_people_options.select_by_visible_text('eine Person')
+number_of_people_options.select_by_visible_text(number_of_people_in_german)
 time.sleep(2)
 
 family_member_select = driver.find_element(By.NAME, 'lebnBrMitFmly')
 family_member_options = Select(family_member_select)
-family_member_options.select_by_visible_text('nein')
+family_member_options.select_by_visible_text(family_members_in_german)
 time.sleep(2)
 
 service_option = driver.find_element(By.CLASS_NAME, 'kachel-461-0-1').click()
@@ -105,13 +106,21 @@ time.sleep(4)
 
 type1_option = driver.find_element(By.CLASS_NAME, 'accordion-461-0-1-1').click()
 time.sleep(4)
-type2_option = WebDriverWait(driver, 10).until(
-    EC.presence_of_element_located((By.ID, "SERVICEWAHL_DE461-0-1-1-324661"))
-)
+
+for i in driver.find_elements(By.CLASS_NAME, 'level3'):
+    time.sleep(2)
+    element = i.find_element(By.XPATH, './/label')
+    if element.text == 'Aufenthaltserlaubnis für Fachkräfte zur Arbeitsplatzsuche - Erteilung (§ 20)':
+        element.click()
+        break
 time.sleep(5)
 
-final_button = driver.find_element(By.ID, 'applicationForm:managedForm:proceed').click()
+final_button()
+time.sleep(8)
 
+while driver.find_element(By.ID, 'messagesBox'):
+    final_button()
+    time.sleep(8)
 
 
 
@@ -122,18 +131,3 @@ final_button = driver.find_element(By.ID, 'applicationForm:managedForm:proceed')
 # Don't forget to stop the service and close the browser when you're done
 # driver.quit()
 # service.stop()
-
-# l = run.find_elements(By.CLASS_NAME, 'button')
-# #time.sleep(5)
-# for i in l:
-#     if i.text == 'Book Appointment':
-#         i.click()
-#
-# if len(run.find_elements(By.NAME, 'gelesen')) < 2:
-#     run.find_element(By.NAME, 'gelesen').click()
-#     if len(run.find_elements(By.NAME, 'applicationForm:managedForm:proceed')) < 2:
-#         run.find_element(By.NAME, 'applicationForm:managedForm:proceed').click()
-#         print('clicked2')
-#     print('clicked')
-# else:
-#     print('more than one')
