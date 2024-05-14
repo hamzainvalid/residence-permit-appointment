@@ -7,6 +7,7 @@ import time
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
+from message_sender import user_notification
 
 def retry_action(action, max_retries=3):
     retry_count = 0
@@ -122,7 +123,7 @@ while driver.find_element(By.ID, 'messagesBox'):
     final_button()
     time.sleep(8)
 
-
+user_notification()
 
 
 
