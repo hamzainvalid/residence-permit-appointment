@@ -1,6 +1,6 @@
 import winreg
 import os
-
+from webdriver import webdriver
 
 def get_chrome_version():
     try:
@@ -39,16 +39,27 @@ def find_chrome_webdriver():
     return None
 
 
-chrome_webdriver_path = find_chrome_webdriver()
-if chrome_webdriver_path:
-    print("Chrome WebDriver found at:", chrome_webdriver_path)
-else:
-    print("Chrome WebDriver not found.")
-    chrome_version = get_chrome_version()
-    if chrome_version:
-        print("Chrome version:", chrome_version)
-        download_webdriver_notification()
+def webdriver_checker():
+    okay_to_run = False
+    if chrome_webdriver_path:
+        print("Chrome WebDriver found at:", chrome_webdriver_path)
+        str(chrome_version)
+        str(chrome_webdriver_path)
+        if chrome_version and chrome_version[:3] == chrome_webdriver_path[:3]:
+            okay_to_run = True
+        else:
+            print("Failed to retrieve Chrome version. Please install google chrome on your operating system")
     else:
-        print("Failed to retrieve Chrome version.")
+        print("Chrome WebDriver not found.")
+        chrome_version = get_chrome_version()
+        if chrome_version:
+            print("Chrome version:", chrome_version)
+            download_webdriver_notification()
+        else:
+            print("Failed to retrieve Chrome version. Please install google chrome on your operating system")
+    return okay_to_run
 
+#vars
+chrome_webdriver_path = find_chrome_webdriver()
+chrome_version = get_chrome_version()
 
