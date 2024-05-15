@@ -26,6 +26,7 @@ def final_button():
     driver.find_element(By.ID, 'applicationForm:managedForm:proceed').click()
 
 #vars
+driver_path = input('Please copy and paste the correct path of your webdriver here! Please do not add any speech marks or anything just paste the path as it is.')
 country = input('Please enter your nationality! First letter must be capital and the rest should be small!: ')
 
 number_of_people = int(input('Please enter the number of people applying! 1,2,3....: '))
@@ -40,7 +41,7 @@ else:
 
 
 #chrome driver
-chrome_driver_path = "D:\\Github Repositories\\residence-permit-appointment\\chrome driver\\chromedriver-win64\\chromedriver.exe"
+chrome_driver_path = driver_path
 
 #disable the chrome detection
 options = Options()
