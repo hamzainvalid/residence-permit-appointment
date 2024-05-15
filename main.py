@@ -7,7 +7,7 @@ import time
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
-from message_sender import user_notification
+from notification_sound import user_notification
 
 def retry_action(action, max_retries=3):
     retry_count = 0
@@ -40,7 +40,7 @@ else:
     family_members_in_german = 'nein'
 
 
-#chrome driver
+#webdriver path
 chrome_driver_path = driver_path
 
 #disable the chrome detection
