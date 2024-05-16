@@ -8,6 +8,14 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
 from notification_sound import user_notification
+from version_checker import webdriver_checker
+import sys
+
+#first step: check for the existence of the webdriver and chrome version to make sure that the program runs wihtout any problems
+check_for_webdriver = webdriver_checker()
+if check_for_webdriver == False:
+    sys.exit()
+
 
 def retry_action(action, max_retries=3):
     retry_count = 0
@@ -26,7 +34,8 @@ def final_button():
     driver.find_element(By.ID, 'applicationForm:managedForm:proceed').click()
 
 #vars
-driver_path = input('Please copy and paste the correct path of your webdriver here! Please do not add any speech marks or anything just paste the path as it is.')
+driver_path = input('Cogratulations your version check has pass!\n''Please copy and paste the path of your webdriver here to initiate the program! Please do not add any speech marks or anything just paste the path as it is: ')
+
 country = input('Please enter your nationality! First letter must be capital and the rest should be small!: ')
 
 number_of_people = int(input('Please enter the number of people applying! 1,2,3....: '))
@@ -38,6 +47,7 @@ if family_members == 'y' or 'Y' or 'Yes' or 'yes':
     family_members_in_german = 'ja'
 else:
     family_members_in_german = 'nein'
+
 
 
 #webdriver path
