@@ -16,6 +16,7 @@ check_for_webdriver = webdriver_checker()
 if check_for_webdriver == False:
     sys.exit()
 
+
 def retry_action(action, max_retries=3):
     retry_count = 0
     while True:
@@ -34,6 +35,7 @@ def final_button():
 
 #vars
 driver_path = input('Cogratulations your version check has pass!\n''Please copy and paste the path of your webdriver here to initiate the program! Please do not add any speech marks or anything just paste the path as it is: ')
+
 country = input('Please enter your nationality! First letter must be capital and the rest should be small!: ')
 
 number_of_people = int(input('Please enter the number of people applying! 1,2,3....: '))
@@ -47,7 +49,8 @@ else:
     family_members_in_german = 'nein'
 
 
-#chrome driver
+
+#webdriver path
 chrome_driver_path = driver_path
 
 #disable the chrome detection
