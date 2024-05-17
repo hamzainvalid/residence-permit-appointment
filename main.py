@@ -8,7 +8,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
 from notification_sound import user_notification
-from version_checker import webdriver_checker
+from version_checker import webdriver_checker, chrome_webdriver_path
 import sys
 
 #first step: check for the existence of the webdriver and chrome version to make sure that the program runs wihtout any problems
@@ -34,7 +34,7 @@ def final_button():
     driver.find_element(By.ID, 'applicationForm:managedForm:proceed').click()
 
 #vars
-driver_path = input('Cogratulations your version check has pass!\n''Please copy and paste the path of your webdriver here to initiate the program! Please do not add any speech marks or anything just paste the path as it is: ')
+driver_path = chrome_webdriver_path
 
 country = input('Please enter your nationality! First letter must be capital and the rest should be small!: ')
 
@@ -45,6 +45,8 @@ number_of_people_in_german = people_in_german[number_of_people-1]
 family_members = input('Do you live with any family members? Please type y/n! No input or inappropriate input will be considered as No!: ')
 if family_members == 'y' or 'Y' or 'Yes' or 'yes':
     family_members_in_german = 'ja'
+elif family_members == ' ' or family_members == '':
+    family_members_in_german = 'nein'
 else:
     family_members_in_german = 'nein'
 
