@@ -56,6 +56,7 @@ def webdriver_checker():
         str(chrome_version)
         str(chrome_webdriver_path)
         webdriver_version = webDriver(chrome_webdriver_path)
+        print(webdriver_version)
         str(webdriver_version)
         if chrome_version and chrome_version[:3] == webdriver_version[:3]:
             okay_to_run = True

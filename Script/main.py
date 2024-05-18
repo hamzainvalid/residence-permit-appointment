@@ -14,6 +14,7 @@ import sys
 #first step: check for the existence of the webdriver and chrome version to make sure that the program runs wihtout any problems
 check_for_webdriver = webdriver_checker()
 if check_for_webdriver == False:
+    input("Press Enter to exit...")
     sys.exit()
 
 
@@ -137,6 +138,7 @@ while driver.find_element(By.ID, 'messagesBox'):
     time.sleep(8)
 
 user_notification()
+input("Press Enter to exit...")
 
 
 
