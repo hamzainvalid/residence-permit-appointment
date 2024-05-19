@@ -1,11 +1,14 @@
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
 
 
 def get_chrome_driver_version(chrome_driver_path):
-    driver_path = chrome_driver_path
     try:
-        # Initialize a Chrome WebDriver instance
-        driver = webdriver.Chrome(executable_path=driver_path)
+        # Initialize the ChromeDriver service
+        service = Service(chrome_driver_path)
+
+        # Initialize a Chrome WebDriver instance with the service
+        driver = webdriver.Chrome(service=service)
 
         # Get the Chrome WebDriver version
         version = driver.capabilities['chrome']['chromedriverVersion'].split(' ')[0]
