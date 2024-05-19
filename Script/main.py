@@ -44,7 +44,7 @@ people_in_german = ['eine Person','zwei Personen', 'drei Personen', 'vier Person
 number_of_people_in_german = people_in_german[number_of_people-1]
 
 family_members = input('Do you live with any family members? Please type y/n! No input or inappropriate input will be considered as No!: ')
-if family_members == 'y' or 'Y' or 'Yes' or 'yes':
+if family_members == 'y' or family_members == 'Y' or family_members == 'Yes' or family_members == 'yes':
     family_members_in_german = 'ja'
 elif family_members == ' ' or family_members == '':
     family_members_in_german = 'nein'
