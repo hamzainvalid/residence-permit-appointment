@@ -1,18 +1,63 @@
-import winreg
-import os
-from webdriver import webDriver
+import subprocess
+import re
 
 def get_chrome_version():
     try:
-        # Open the Windows registry key where Chrome's version is stored
-        reg_path = r"Software\Google\Chrome\BLBeacon"
-        key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, reg_path, 0, winreg.KEY_READ)
-
-        # Read the version value
-        version, _ = winreg.QueryValueEx(key, "version")
-        return version
+        # Run the command to get the Chrome version
+        result = subprocess.run(
+            ["/Applications/Google Chrome.app/Contents/MacOS/Google Chrome", "--version"],
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True
+        )
+        # Check if the command was executed successfully
+        if result.returncode == 0:
+            # Extract and return the version from the output
+            version = result.stdout.strip()
+            version_number = re.search(r'(\d+\.\d+\.\d+\.\d+)', version).group(1)
+            return version_number
+        else:
+            print("Error getting Chrome version:", result.stderr)
+            return None
     except Exception as e:
-        print("Error:", e)
+        print("An error occurred:", str(e))
+        return None
+
+def get_webdriver_version():
+    try:
+        # Run the command to get the Chrome WebDriver version
+        result = subprocess.run(
+            ["chromedriver", "--version"],
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True
+        )
+        # Check if the command was executed successfully
+        if result.returncode == 0:
+            # Extract and return the version from the output
+            version = result.stdout.strip()
+            version_number = re.search(r'(\d+\.\d+\.\d+\.\d+)', version).group(1)
+            return version_number
+        else:
+            print("Error getting WebDriver version:", result.stderr)
+            return None
+    except Exception as e:
+        print("An error occurred:", str(e))
+        return None
+
+def get_webdriver_path():
+    try:
+        # Run the 'which' command to find the path of chromedriver
+        result = subprocess.run(
+            ["which", "chromedriver"],
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True
+        )
+        # Check if the command was executed successfully
+        if result.returncode == 0:
+            # Extract and return the path from the output
+            webdriver_path = result.stdout.strip()
+            return webdriver_path
+        else:
+            print("Error finding WebDriver path:", result.stderr)
+            return None
+    except Exception as e:
+        print("An error occurred:", str(e))
         return None
 
 def download_webdriver_notification():
@@ -24,39 +69,14 @@ def download_webdriver_notification():
         print(f'The program could not find the correct webdriver in the provided locations. Please download the webdriver version:{chrome_version_initaials} using this link:'+'https://chromedriver.chromium.org/downloads')
 
 
-def find_chrome_webdriver():
-    # Check common directories where the Chrome WebDriver might be located
-    common_locations = [
-        os.path.join(os.getenv('ProgramFiles'), 'Google', 'Chrome', 'Application', 'chromedriver.exe'),
-        os.path.join(os.getenv('ProgramFiles(x86)'), 'Google', 'Chrome', 'Application', 'chromedriver.exe'),
-        # Add more locations if necessary
-    ]
 
-    # Check if the WebDriver exists in any of the common locations
-    for location in common_locations:
-        if os.path.exists(location):
-            print("Chrome WebDriver found at:", location)
-            webDriver(location)
-            return location
-
-    webdriver_path = input('The program could not find the webdriver in the obvious locations. Please copy and paste the path of your webdriver if you already have one insalled otherwise type N/n')
-    if webdriver_path == 'n' or webdriver_path == 'N':
-        return None
-    elif os.path.exists(webdriver_path):
-        webDriver(webdriver_path)
-        return webdriver_path
-    else:
-        return None
 
 
 def webdriver_checker():
     okay_to_run = False
-    if chrome_webdriver_path:
-        print("Chrome WebDriver found at:", chrome_webdriver_path)
+    if webdriver_version:
+        print("Chrome WebDriver found at:", webdriver_version)
         str(chrome_version)
-        str(chrome_webdriver_path)
-        webdriver_version = webDriver(chrome_webdriver_path)
-        print(webdriver_version)
         str(webdriver_version)
         if chrome_version and chrome_version[:3] == webdriver_version[:3]:
             okay_to_run = True
@@ -75,6 +95,7 @@ def webdriver_checker():
     return okay_to_run
 
 #vars
-chrome_webdriver_path = find_chrome_webdriver()
 chrome_version = get_chrome_version()
+webdriver_version = get_webdriver_version()
+chrome_webdriver_path = get_webdriver_path()
 

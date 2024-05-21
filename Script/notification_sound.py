@@ -1,12 +1,12 @@
-import winsound
-
-
-duration = 4000  # milliseconds
-frequency = 440  # Hz
+import subprocess
 
 def user_notification():
-    winsound.Beep(frequency, duration)
-
-
-
+    try:
+        # Run AppleScript command to play a system sound
+        subprocess.run(
+            ['osascript', '-e', 'display notification "Appointment Found, please fill in your data and book the appointment" sound name "Glass"'],
+            check=True
+        )
+    except subprocess.CalledProcessError as e:
+        print("Error:", e)
 
