@@ -56,7 +56,7 @@ The application is only available for Windows 10 or 11 OS yet. Please follow the
 ## Example
 
 ## Download
-[App.exe](https://github.com/hamzainvalid/residence-permit-appointment/raw/dev/App/App.exe) -- 0.1v
+[App.exe](https://github.com/hamzainvalid/residence-permit-appointment/raw/app-testing/Script/dist/App.exe) -- 0.1v
 
 ## Contributing
 
