@@ -19,10 +19,13 @@ input('Press enter to begin')
 #first step: check for the existence of the webdriver and chrome version to make sure that the program runs wihtout any problems
 print('Please do not type anything or close the window until required by the program to avoid interruptions!')
 time.sleep(3)
-check_for_webdriver = webdriver_checker()
-if check_for_webdriver == False:
-    input("Press Enter to exit...")
-    sys.exit()
+
+def version_checker_step():
+    check_for_webdriver = webdriver_checker()
+    if check_for_webdriver == False:
+        input("Press Enter to exit...")
+        sys.exit()
+version_checker_step()
 
 print('Version check has been cleared!')
 time.sleep(1)
