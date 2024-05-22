@@ -25,7 +25,7 @@ def version_checker_step():
     if check_for_webdriver == False:
         input("Press Enter to exit...")
         sys.exit()
-version_checker_step()
+#version_checker_step()
 
 print('Version check has been cleared!')
 time.sleep(1)
@@ -47,7 +47,7 @@ def final_button():
     driver.find_element(By.ID, 'applicationForm:managedForm:proceed').click()
 
 #vars
-driver_path = chrome_webdriver_path
+driver_path = input('Please input the path of your webdriver')
 counter = 0
 
 print('Please input the correct information for the following questions with correct format to avoid any interruption in program running. Refer to readme instructions')
