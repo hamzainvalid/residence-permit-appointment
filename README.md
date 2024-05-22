@@ -30,9 +30,10 @@ Welcome to my portfolio. To all the people in Berlin suffering through the pain 
 As mentioned above the app is still undergoing development and is limited to only a few features yet. The app only works for application of job-seekers visa appointment i.e Apply for the residence title: Job-seekers visa. Be aware that the program only navigates to the appointment service automatically and auto refreshes until any appointment appears when the notification sound goes off so it can also run in the background or not to be attended to.
 The application is only available for Windows 10 or 11 OS yet. Please follow the following steps to get familiar with the application and its usage:
 
-- Download the [application.exe](#download) file
+- Download the [application package](#download)
+- Extract the folder named App
 - The app has a cli interface and only interacts with cli
-- Save the app on your local system and run the App.exe file
+- Open the folder and run the "App.exe" file
 - A command prompt(cli) window will appear and the program will start running on your machine
 - Please follow the instructions displayed on the screen and don't type or click anything until required by the program
 - The first step is checking for chrome and webdriver(Chrome driver)
@@ -59,7 +60,7 @@ The application is only available for Windows 10 or 11 OS yet. Please follow the
 ## Example
 
 ## Download
-[App.exe](https://github.com/hamzainvalid/residence-permit-appointment/raw/app-testing/Script/dist/App.exe) -- 0.1v
+[App.exe](https://github.com/hamzainvalid/residence-permit-appointment/raw/app-testing/App.zip) -- 0.1v
 
 ## Contributing
 
