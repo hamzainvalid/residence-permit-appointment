@@ -11,18 +11,18 @@ Welcome to my portfolio. To all the people in Berlin suffering through the pain 
 
 ## Features
 
-- The program is only available for Windows OS atm
+- The program is only available for Windows OS atm, the Mac version is under development and will soon be available
 - The program does not book an appointment for you it only opens the website and auto-refreshes it until the appointment window appears
-- Automates the process, reducing manual effort and saving time and has shown very effective results
+- Automates the process, reducing manual effort, saving time and has shown very effective results
 - Suppoorts only Chrome atm
 - Built-in version checker to check for the webdriver version and help download it according to the chrome version
-- Easy to use
-- Free for all
+- Easy to use and small in size
+- Open source tool, free for all
 
 ## Requirements
 
 - Windows OS 10+
-- Chrome latest version
+- Chrome latest version prefe
 - Webdriver same as the chrome version(First three numbers)
 
 ## Usage
@@ -33,20 +33,23 @@ The application is only available for Windows 10 or 11 OS yet. Please follow the
 - Download the [application.exe](#download) file
 - The app has a cli interface and only interacts with cli
 - Save the app on your local system and run the App.exe file
-- A command prompt window will appear and the program will start running on your machine
+- A command prompt(cli) window will appear and the program will start running on your machine
+- Please follow the instructions displayed on the screen and don't type or click anything until required by the program
 - The first step is checking for chrome and webdriver(Chrome driver)
 - Please make sure to download [Chrome](https://www.google.com/chrome/) and the [webdriver](https://chromedriver.chromium.org/downloads) same as the chrome's version
 - The program will run its second step and check for the version of the webdriver if its compatible with your installed chrome version
-- The program will provide you with further instructions to make sure that the webdriver is compatible with the chrome
+- The program will provide you with further instructions to make sure that the webdriver is compatible with the chrome and may provide you with a link to download the compatible webdriver
+- If you have the webdriver and chrome of the same version installed and the program still couldn't detect the webdriver, you may need to copy the path of your webdriver and paste it when the program requests for it
 - Please do not type or close the window until the program asks you to do so
-- The progam will then request your information
-- Your nationality is required to be your country name without any suffixes or prefixes in German. You can find your country name in German [here](https://www.nationsonline.org/oneworld/countrynames_german.htm) (Please only use the German name to avoid any interruptions)
+- The progam will then request your data
+- Your nationality is required to be your country name without any suffixes or prefixes in German, for example: Pakistan(not pakistani), America(not American). You can find your country name in German [here](https://www.nationsonline.org/oneworld/countrynames_german.htm) (Please only use the German name to avoid any interruptions)
 - Number of people applying should be atleast one and maximum eight in number(ex:1,2,3...)
-- Family members functionality is not fully accessible so please type "No" or just press enter. As for now this option is only available for "No" input
-- Please don't hurry or type anything else until the program says to, just wait for it to process.
+- Family members functionality is not fully accessible atm so the program will automatically select "No" for that and move ahead
+- Please don't hurry or type anything else until the program says to, just wait for it to process, it will take some time so please be a little patient
 - The program then will open the chrome window and start the automation process
-- You must not do anything afterwards, the program will keep running until it finds you the appointment window and notify you with a notification sound for 30 seconds so please make sure your windows volume is loud enough for you to catch up on that sound
-- Once the appointment window appears you can book your appointment and close the program
+- You must not do anything afterwards, the program will keep running until it finds you the appointment window and notify you with a notification sound for 5 seconds so please make sure your windows volume is loud enough for you to catch up on that sound
+- Please don't close the chrome window and the command prompt window unless to wish to stop the program before booking the appointment
+- Once the appointment window appears you can book your appointment and close the program. Please don't close the program window until you have successfully booked your appointment, closing the program will just close the chrome window as well
 
 
 ## Configuration
