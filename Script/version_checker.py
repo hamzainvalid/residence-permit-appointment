@@ -34,9 +34,22 @@ def get_webdriver_version():
             version = result.stdout.strip()
             version_number = re.search(r'(\d+\.\d+\.\d+\.\d+)', version).group(1)
             return version_number
-        else:
-            print("Error getting WebDriver version:", result.stderr)
+        webdriver_path = input('The program could not find the webdriver in the obvious locations. Please copy and paste the path of your webdriver if you already have one insalled otherwise type N/n')
+        if webdriver_path == 'n' or webdriver_path == 'N':
             return None
+        else:
+            result = subprocess.run(
+                [webdriver_path, "--version"],
+                stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True
+            )
+            if result.returncode == 0:
+                # Extract and return the version from the output
+                version = result.stdout.strip()
+                version_number = re.search(r'(\d+\.\d+\.\d+\.\d+)', version).group(1)
+                return version_number
+            else:
+                print("Error getting WebDriver version:", result.stderr)
+                return None
     except Exception as e:
         print("An error occurred:", str(e))
         return None
