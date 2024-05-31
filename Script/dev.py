@@ -31,8 +31,7 @@ def retry_action(action, max_retries=3):
             else:
                 raise e
 
-def final_button():
-    driver.find_element(By.ID, 'applicationForm:managedForm:proceed').click()
+
 
 #vars
 driver_path = input('Please input the webdriver path here')
@@ -64,6 +63,8 @@ def setup_driver(chrome_driver_path):
         print(f"Error setting up WebDriver: {e}")
         raise
 
+def final_button():
+    driver.find_element(By.ID, 'applicationForm:managedForm:proceed').click()
 
 def run_program():
     # Path to the ChromeDriver
@@ -152,15 +153,15 @@ def run_program():
             break
     time.sleep(5)
 
-    final_button()
-    time.sleep(10)
+    driver.find_element(By.ID, 'applicationForm:managedForm:proceed').click()
+    time.sleep(22)
 
     while driver.find_element(By.ID, 'messagesBox'):
         if counter == 20:
             run_program()
         counter += 1
-        final_button()
-        time.sleep(10)
+        driver.find_element(By.ID, 'applicationForm:managedForm:proceed').click()
+        time.sleep(22)
     appointment_found = True
 
 
